@@ -1,2 +1,2 @@
-self.somar = a + b
-    return self.somar
+mensagem = 'Hello, world!'
+print(mensagem)
