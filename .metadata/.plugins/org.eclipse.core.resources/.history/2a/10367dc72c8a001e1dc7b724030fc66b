@@ -1,0 +1,47 @@
+package fundamentos;
+import java.util.Scanner;
+
+public class ex013 {
+    public static void main(String[] args) {
+        Scanner scanner_entry = new Scanner(System.in);
+
+        System.out.println("Responda às perguntas com 'sim' ou 'nao'.");
+        
+        System.out.print("Telefonou para a vítima? ");
+        boolean telefonou = scanner_entry.nextLine().equalsIgnoreCase("sim");
+
+        System.out.print("Esteve no local do crime? ");
+        boolean esteveNoLocal = scanner_entry.nextLine().equalsIgnoreCase("sim");
+
+        System.out.print("Mora perto da vítima? ");
+        boolean moraPerto = scanner_entry.nextLine().equalsIgnoreCase("sim");
+
+        System.out.print("Devia para a vítima? ");
+        boolean devia = scanner_entry.nextLine().equalsIgnoreCase("sim");
+
+        System.out.print("Já trabalhou com a vítima? ");
+        boolean trabalhouComVitima = scanner_entry.nextLine().equalsIgnoreCase("sim");
+
+        int respostasPositivas = contarRespostasPositivas(telefonou, esteveNoLocal, moraPerto, devia, trabalhouComVitima);
+
+        if (respostasPositivas == 2) {
+            System.out.println("Suspeita");
+        } else if (respostasPositivas >= 3 && respostasPositivas <= 4) {
+            System.out.println("Cúmplice");
+        } else if (respostasPositivas == 5) {
+            System.out.println("Assassino");
+        } else {
+            System.out.println("Inocente!");
+        }
+    }
+
+    private static int contarRespostasPositivas(boolean... respostas) {
+        int contador = 0;
+        for (boolean resposta : respostas) {
+            if (resposta) {
+                contador++;
+            }
+        }
+        return contador;
+    }
+}
