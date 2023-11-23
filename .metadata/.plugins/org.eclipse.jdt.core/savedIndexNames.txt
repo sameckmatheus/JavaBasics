@@ -1,0 +1,4 @@
+INDEX VERSION 1.134+C:\Users\TURMA-B\OneDrive\Documentos\_projects-for-cdd\JavaBasics\.metadata\.plugins\org.eclipse.jdt.core
+3011209426.index
+1865797976.index
+3627500230.index

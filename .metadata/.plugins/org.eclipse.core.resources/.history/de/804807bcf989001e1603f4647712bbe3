@@ -1,0 +1,21 @@
+package fundamentos;
+import java.util.Scanner;
+
+public class Exercicio010 {
+	public static void main(String[] args) {
+		Scanner entrada = new Scanner(System.in);
+		System.out.println("Digite um número: ");
+		
+		double n1 = entrada.nextDouble();
+		double n2 = entrada.nextDouble();
+		double n3 = entrada.nextDouble();
+		
+		if ((n1 > n2) && (n1 > n3)) {
+			System.out.printf("O número "+ n1 + " é o maior.");
+		} else if ((n2 > n1) && (n2 > n3)) {
+			System.out.printf("O número "+ n2 + " é o maior.");
+		} else {
+			System.out.printf("O número "+ n3 + " é o maior.");
+		}
+	}
+}
