@@ -1,0 +1,7 @@
+package repeticoes;
+
+public class conceitoFor {
+	public static void main(String[] args) {
+		
+	}
+}
