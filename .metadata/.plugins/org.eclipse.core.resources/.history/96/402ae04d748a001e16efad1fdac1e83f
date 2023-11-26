@@ -1,0 +1,58 @@
+package entregas;
+
+import java.util.Scanner;
+import java.util.Random;
+
+public class JogoForca {
+	public static void main(String[] args) {
+		System.out.println("JOGO DA FORCA!!!");
+		String arteTitulo = """
+				######   #####   ######     ####     ###
+	            ##      ##   ##  ###  ##   ##  ##   ## ##
+	            ##      ##   ##  ##   ##  ##       ##   ##
+	            #####   ##   ##  ##  ##   ##       ##   ##
+	            ##      ##   ##  #####    ##       #######
+	            ##      ##   ##  ## ###    ##  ##  ##   ##
+	            ##       #####   ##  ###    ####   ##   ##
+	            """;
+		System.out.println(arteTitulo);
+		
+		JogoForca forca = new JogoForca();
+		forca.definirPalavra();
+		
+		Scanner entrada = new Scanner(System.in);
+		
+		while (!forca.isFim()) {
+			System.out.println("Palavra: " + String.join(" ", forca.getLetrasCorretas()));
+            System.out.println("Letras erradas: " + String.join(", ", forca.getLetrasErradas()));
+            System.out.println(forca.desenharForca());
+            System.out.print("Digite uma letra: ");
+            
+            String chute = entrada.nextLine().toLowerCase();
+            String resultado = forca.verificarChute(chute);
+            
+            if (resultado != null) {
+            	System.out.println(resultado);
+            	break;
+            }
+		}
+		
+		entrada.close();
+	}
+}
+
+class JogoForca {
+	private final String[] palavrasSecretas = {"feno", "ferro", "manteiga"};
+	private String palavraSecretaEscolhida = " ";
+	private int erros = 0;
+	private int acertos = 0;
+	private boolean fim = false;
+	private String[] letrasCorretas;
+	private String[] letrasIncorretas;
+	
+	public void definirPalavra() {
+		palavraSecretaEscolhida = palavrasSecretas[new Random().nextInt(palavrasSecretas.lenght)].toLowerCase();
+		letras
+	}
+}
+
