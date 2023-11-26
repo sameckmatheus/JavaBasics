@@ -7,6 +7,7 @@ import java.util.Scanner;
 
 public class JogoDaForca2 {
     private static final String[] PALAVRAS = {"casa", "carro", "computador", "telefone", "escola"};
+    private static final String[] FORCA = {" O", "/|\\", "/ \\"};
     private static final int MAX_TENTATIVAS = 6;
 
     private String palavra;
@@ -29,7 +30,7 @@ public class JogoDaForca2 {
     public void jogar() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Bem-vindo ao Jogo da Forca!");
-        exibirJogo();
+        exibirForca();
         while (tentativasRestantes > 0 && !jogoFinalizado()) {
             System.out.println("Digite uma letra ou chute a palavra: ");
             String entrada = scanner.nextLine().toLowerCase();
@@ -61,7 +62,8 @@ public class JogoDaForca2 {
                     System.out.println("Você errou o chute.");
                 }
             }
-            exibirJogo();
+            exibirForca();
+            exibirLetrasTentadas();
         }
         if (jogoFinalizado() && tentativasRestantes > 0) {
             System.out.println("Parabéns, você acertou a palavra!");
@@ -71,16 +73,25 @@ public class JogoDaForca2 {
         scanner.close();
     }
 
-    private void exibirJogo() {
-        System.out.println(arteForca());
+    private void exibirForca() {
+        System.out.println();
+        int erros = MAX_TENTATIVAS - tentativasRestantes;
+
+        for (int i = 0; i < erros; i++) {
+            System.out.println(FORCA[i]);
+        }
+
+        for (int i = erros; i < FORCA.length; i++) {
+            System.out.println(" ");
+        }
 
         System.out.println();
         for (char letra : palavraEscondida) {
             System.out.print(letra + " ");
         }
         System.out.println("\n");
-        exibirLetrasTentadas();
     }
+
 
     private void exibirLetrasTentadas() {
         System.out.println("Letras tentadas: ");
@@ -90,87 +101,22 @@ public class JogoDaForca2 {
         System.out.println("\n");
     }
 
-    private String arteForca() {
-        String[] partesForca = {
-            """
-               _____ 
-               |   |
-               |
-               |
-               |
-               |
-            ___|___
-            """,
-            """
-               _____ 
-               |   |
-               |   O
-               |
-               |
-               |
-            ___|___
-            """,
-            """
-               _____ 
-               |   |
-               |   O
-               |   |
-               |
-               |
-            ___|___
-            """,
-            """
-               _____ 
-               |   |
-               |   O
-               |  /|
-               |
-               |
-            ___|___
-            """,
-            """
-               _____ 
-               |   |
-               |   O
-               |  /|\
-               |
-               |
-            ___|___
-            """,
-            """
-               _____ 
-               |   |
-               |   O
-               |  /|\
-               |  /
-               |
-            ___|___
-            """,
-            """
-               _____ 
-               |   |
-               |   O
-               |  /|\
-               |  / \
-               |
-            ___|___
-            """
-        };
-        
-        int erros = MAX_TENTATIVAS - tentativasRestantes;
-
-        if (erros < partesForca.length) {
-            return partesForca[erros];
-        } else {
-            return partesForca[partesForca.length - 1];
-        }
-    }
-
     private boolean jogoFinalizado() {
         return palavra.equals(String.valueOf(palavraEscondida));
     }
 
     public static void main(String[] args) {
+    	String arteTitulo = """
+				######   #####   ######     ####     ###
+	            ##      ##   ##  ###  ##   ##  ##   ## ##
+	            ##      ##   ##  ##   ##  ##       ##   ##
+	            #####   ##   ##  ##  ##   ##       ##   ##
+	            ##      ##   ##  #####    ##       #######
+	            ##      ##   ##  ## ###    ##  ##  ##   ##
+	            ##       #####   ##  ###    ####   ##   ##
+	            """;
+		System.out.println(arteTitulo);
+		
         JogoDaForca2 jogo = new JogoDaForca2();
         jogo.jogar();
     }

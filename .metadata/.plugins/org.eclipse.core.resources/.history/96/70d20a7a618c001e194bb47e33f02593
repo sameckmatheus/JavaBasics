@@ -38,11 +38,6 @@ public class JogoDaForca {
 		
 		entrada.close();
 	}
-
-	public void jogar() {
-		// TODO Auto-generated method stub
-		
-	}
 }
 
 class JogoForca {
@@ -95,7 +90,7 @@ class JogoForca {
 		} else {
 			return "Entrada inválida!";
 		}
-		return null;
+		return "";
 	}
 	
 	public String arteForca() {

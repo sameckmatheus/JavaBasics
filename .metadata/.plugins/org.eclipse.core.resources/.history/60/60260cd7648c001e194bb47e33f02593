@@ -1,0 +1,84 @@
+package entregas;
+
+import java.util.Arrays;
+import java.util.Random;
+
+public class JogoDaForca2 {
+    private static final String[] PALAVRAS = {"catapimbas", "abacaxi", "chocolate", "computador", "elefante"};
+    private static final int MAX_ERROS = 7;
+
+    public static void main (String[] args) {
+        char[] palavra = sorteiaPalavra();
+        char[] tabuleiro = montaTabuleiro(palavra);
+        String letrasTentadas = "";
+        int erros = 0;
+
+        while (erros &lt; MAX_ERROS &amp;&amp; !Arrays.equals(tabuleiro, palavra)) {
+
+            mostraTabuleiro(tabuleiro);
+            System.out.println();
+            System.out.println("Letras tentadas: " + letrasTentadas);
+
+            char letra;
+            boolean letraValida = false;
+
+            do {
+                System.out.print("Informe uma letra: ");
+                letra = Character.toLowerCase(System.console().readLine().charAt(0));
+
+                if (Character.isLetter(letra) &amp;&amp; !letrasTentadas.contains(String.valueOf(letra))) {
+                    letraValida = true;
+                } else {
+                    System.out.println("Letra inválida ou já tentada. Tente novamente.");
+                }
+            } while (!letraValida);
+
+            letrasTentadas += letra;
+
+            if (acertou(palavra, letra)) {
+                atualizaTabuleiro(tabuleiro, palavra, letra);
+            } else {
+                erros++;
+            }
+        }
+
+        if (erros &gt;= MAX_ERROS) {
+            System.out.println("Você perdeu. A palavra era: " + new String(palavra));
+        } else {
+            System.out.println("Você venceu. A palavra é: " + new String(palavra));
+        }
+    }
+
+    private static char[] sorteiaPalavra() {
+        Random random = new Random();
+        int index = random.nextInt(PALAVRAS.length);
+        return PALAVRAS[index].toCharArray();
+    }
+
+    private static char[] montaTabuleiro(char[] palavra) {
+        char[] tabuleiro = new char[palavra.length];
+        Arrays.fill(tabuleiro, '_');
+        return tabuleiro;
+    }
+
+    private static void mostraTabuleiro(char[] tabuleiro) {
+        System.out.println(Arrays.toString(tabuleiro));
+    }
+
+    private static boolean acertou(char[] palavra, char letra) {
+        for (char c : palavra) {
+            if (c == letra) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private static void atualizaTabuleiro(char[] tabuleiro, char[] palavra, char letra) {
+        for (int i = 0; i &lt; palavra.length; i++) {
+            if (palavra[i] == letra) {
+                tabuleiro[i] = letra;
+            }
+        }
+    }
+}
