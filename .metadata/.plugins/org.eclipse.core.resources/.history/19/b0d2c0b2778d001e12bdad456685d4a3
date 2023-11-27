@@ -94,7 +94,7 @@ public class JogoDaForca {
     }
 
     private void exibirLetrasTentadas() {
-        System.out.print("Letras tentadas: ");
+        System.out.println("Letras tentadas: ");
         for (char letra : letrasTentadas) {
             System.out.print(letra + " ");
         }

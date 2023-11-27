@@ -42,7 +42,7 @@ public class JogoDaForca {
         exibirJogo();
         
         while (tentativasRestantes > 0 && !jogoFinalizado()) {
-            System.out.print("Digite uma letra ou chute a palavra: ");
+            System.out.println("Digite uma letra ou chute a palavra: ");
             String entrada = scanner.nextLine().toLowerCase();
             if (entrada.length() == 1) {
                 char letra = entrada.charAt(0);
@@ -94,7 +94,7 @@ public class JogoDaForca {
     }
 
     private void exibirLetrasTentadas() {
-        System.out.print("Letras tentadas: ");
+        System.out.println("Letras tentadas: ");
         for (char letra : letrasTentadas) {
             System.out.print(letra + " ");
         }

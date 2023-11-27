@@ -58,9 +58,9 @@ public class JogoDaForca {
                         }
                     }
                     if (encontrouLetra) {
-                        System.out.println("Você acertou a letra!");
+                        System.out.print("Você acertou a letra!");
                     } else {
-                        System.out.println("Você errou a letra.");
+                        System.out.print("Você errou a letra.");
                         tentativasRestantes--;
                     }
                 }
@@ -94,7 +94,7 @@ public class JogoDaForca {
     }
 
     private void exibirLetrasTentadas() {
-        System.out.print("Letras tentadas: ");
+        System.out.println("Letras tentadas: ");
         for (char letra : letrasTentadas) {
             System.out.print(letra + " ");
         }
