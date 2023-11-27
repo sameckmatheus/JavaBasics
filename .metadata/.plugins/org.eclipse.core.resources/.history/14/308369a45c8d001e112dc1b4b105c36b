@@ -6,8 +6,8 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class JogoDaForca {
-    private static final String[] PALAVRAS = {"casa", "carro", "computador", "telefone", "escola"};
-    private static final int MAX_TENTATIVAS = 6;
+    private static final String[] PALAVRAS = {"casa", "carro", "computador", "telefone", "escola"}; // aqui eu estou definindo um vetor/constante com as palavras
+    private static final int MAX_TENTATIVAS = 6; // aqui eu estou criando uma constante pra definir o número máximo de tentativas
 
     private String palavra;
     private char[] palavraEscondida;
