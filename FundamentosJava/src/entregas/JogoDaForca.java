@@ -1,199 +1,177 @@
 package entregas;
 
-import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
+import java.util.Scanner;
 
-public class JogoDaForca {
-	public static void main(String[] args) {
-		String arteTitulo = """
-				######   #####   ######     ####     ###
-	            ##      ##   ##  ###  ##   ##  ##   ## ##
-	            ##      ##   ##  ##   ##  ##       ##   ##
-	            #####   ##   ##  ##  ##   ##       ##   ##
-	            ##      ##   ##  #####    ##       #######
-	            ##      ##   ##  ## ###    ##  ##  ##   ##
-	            ##       #####   ##  ###    ####   ##   ##
-	            """;
-		System.out.println(arteTitulo);
-		
-		JogoForca forca = new JogoForca();
-		forca.definirPalavra();
-		
-		Scanner entrada = new Scanner(System.in);
-		
-		while (!forca.theEnd()) {
-			System.out.println("Palavra: " + String.join(" ", forca.getLetrasCorretas()));
-            System.out.println("Letras erradas: " + String.join(", ", forca.getLetrasErradas()));
-            System.out.println(forca.arteForca());
-            System.out.print("Digite uma letra: ");
-            
-            String chute = entrada.nextLine().toLowerCase();
-            String resultado = forca.verificarChute(chute);
-            
-            if (resultado != null) {
-            	System.out.println(resultado);
-            	break;
+public class JogoDaForca2 {
+    private static final String[] PALAVRAS = {"casa", "carro", "computador", "telefone", "escola"};
+    private static final int MAX_TENTATIVAS = 6;
+
+    private String palavra;
+    private char[] palavraEscondida;
+    private List<Character> letrasTentadas;
+    private int tentativasRestantes;
+
+    public JogoDaForca2() {
+        Random random = new Random();
+        int indice = random.nextInt(PALAVRAS.length);
+        palavra = PALAVRAS[indice];
+        palavraEscondida = new char[palavra.length()];
+        for (int i = 0; i < palavra.length(); i++) {
+            palavraEscondida[i] = '-';
+        }
+        letrasTentadas = new ArrayList<>();
+        tentativasRestantes = MAX_TENTATIVAS;
+    }
+
+    public void jogar() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Bem-vindo ao Jogo da Forca!");
+        exibirJogo();
+        while (tentativasRestantes > 0 && !jogoFinalizado()) {
+            System.out.println("Digite uma letra ou chute a palavra: ");
+            String entrada = scanner.nextLine().toLowerCase();
+            if (entrada.length() == 1) {
+                char letra = entrada.charAt(0);
+                if (letrasTentadas.contains(letra)) {
+                    System.out.println("A letra '" + letra + "' já foi tentada.");
+                } else {
+                    letrasTentadas.add(letra);
+                    boolean encontrouLetra = false;
+                    for (int i = 0; i < palavra.length(); i++) {
+                        if (palavra.charAt(i) == letra) {
+                            encontrouLetra = true;
+                            palavraEscondida[i] = letra;
+                        }
+                    }
+                    if (encontrouLetra) {
+                        System.out.println("Você acertou a letra!");
+                    } else {
+                        System.out.println("Você errou a letra.");
+                        tentativasRestantes--;
+                    }
+                }
+            } else {
+                if (entrada.equals(palavra)) {
+                    palavraEscondida = palavra.toCharArray();
+                } else {
+                    tentativasRestantes--;
+                    System.out.println("Você errou o chute.");
+                }
             }
-		}
-		
-		entrada.close();
-	}
-
-	public void jogar() {
-		// TODO Auto-generated method stub
-		
-	}
-}
-
-class JogoForca {
-	private final String[] palavrasSecretas = {"feno", "ferro", "manteiga"};
-	private String palavraSecretaEscolhida = " ";
-	private int erros = 0;
-	private int acertos = 0;
-	private boolean fim = false;
-	private String[] letrasCorretas;
-	private String[] letrasIncorretas;
-	
-	public void definirPalavra() {
-		palavraSecretaEscolhida = palavrasSecretas[new Random().nextInt(palavrasSecretas.length)].toLowerCase();
-		letrasCorretas = new String[palavraSecretaEscolhida.length()];
-		letrasIncorretas = new String[6];
-		
-		for (int i = 0; i < palavraSecretaEscolhida.length(); i++) {
-			letrasCorretas[i] = "_";
-		}
-	}
-	
-	public String verificarChute(String chute) {
-		if (chute.length() == 1 && chute.matches("[a-z]")) {
-			if (chuteArray(chute, letrasIncorretas)) {
-				return "Você já tentou essa letras";
-			}
-		
-			if (chuteArray(chute, letrasIncorretas)) {
-				return "Você já tentou essa letra antes e errou!";
-			}
-			if (chutePalavra(chute)) {
-				for (int i = 0; i < palavraSecretaEscolhida.length(); i++) {
-					if (palavraSecretaEscolhida.charAt(i) == chute.charAt(0)) {
-						letrasCorretas[i] = chute;
-						acertos++;
-					}
-				}
-				if (acertos == palavraSecretaEscolhida.length()) {
-					fim = true;
-	                return "Parabéns, você venceu! A palavra era " + palavraSecretaEscolhida;
-				}
-			} else {
-				letrasIncorretas[erros] = chute;
-				erros++;
-				if (erros >= 6) {
-					fim = true;
-					return "Infelizmente, você perdeu... a palavra era: " + palavraSecretaEscolhida;
-				}
-			}
-		} else {
-			return "Entrada inválida!";
-		}
-		return null;
-	}
-	
-	public String arteForca() {
-		String[] partesForca = {
-			"""
-			   _____ 
-			   |   |
-			   |
-			   |
-			   |
-			   |
-			___|___
-			""",
-			"""
-			   _____ 
-			   |   |
-			   |   O
-			   |
-			   |
-			   |
-			___|___
-			""",
-			"""
-			   _____ 
-			   |   |
-			   |   O
-			   |   |
-			   |
-			   |
-			___|___
-			""",
-			"""
-			   _____ 
-			   |   |
-			   |   O
-			   |  /|
-			   |
-			   |
-			___|___
-			""",
-			"""
-			   _____ 
-			   |   |
-			   |   O
-			   |  /|\
-			   |
-			   |
-			___|___
-			""",
-			"""
-			   _____ 
-			   |   |
-			   |   O
-			   |  /|\
-			   |  /
-			   |
-			___|___
-			""",
-			"""
-			   _____ 
-			   |   |
-			   |   O
-			   |  /|\
-			   |  / \
-			   |
-			___|___
-			"""
-		};
-		
-		if (erros < partesForca.length) {
-		    return partesForca[erros];
-		} else {
-		    return partesForca[partesForca.length - 1];
-		}
-	}
-	
-	public boolean theEnd() {
-		return fim;
-	}
-	
-	private boolean chuteArray(String chute, String[] array) {
-		for (String letra : array) {
-			if (chute.equals(letra)) {
-				return true;
-			}
-		}
-		return false;
-	}
-	
-	private boolean chutePalavra(String chute) {
-        return palavraSecretaEscolhida.contains(chute);
-    }
-	
-	public String[] getLetrasCorretas() {
-        return letrasCorretas;
+            exibirJogo();
+        }
+        if (jogoFinalizado() && tentativasRestantes > 0) {
+            System.out.println("Parabéns, você acertou a palavra!");
+        } else {
+            System.out.println("Que pena, você não conseguiu acertar a palavra. A palavra correta era '" + palavra + "'.");
+        }
+        scanner.close();
     }
 
-    public String[] getLetrasErradas() {
-        return letrasIncorretas;
+    private void exibirJogo() {
+        System.out.println(arteForca());
+
+        System.out.println();
+        for (char letra : palavraEscondida) {
+            System.out.print(letra + " ");
+        }
+        System.out.println("\n");
+        exibirLetrasTentadas();
+    }
+
+    private void exibirLetrasTentadas() {
+        System.out.println("Letras tentadas: ");
+        for (char letra : letrasTentadas) {
+            System.out.print(letra + " ");
+        }
+        System.out.println("\n");
+    }
+
+    private String arteForca() {
+        String[] partesForca = {
+            """
+               _____ 
+               |   |
+               |
+               |
+               |
+               |
+            ___|___
+            """,
+            """
+               _____ 
+               |   |
+               |   O
+               |
+               |
+               |
+            ___|___
+            """,
+            """
+               _____ 
+               |   |
+               |   O
+               |   |
+               |
+               |
+            ___|___
+            """,
+            """
+               _____ 
+               |   |
+               |   O
+               |  /|
+               |
+               |
+            ___|___
+            """,
+            """
+               _____ 
+               |   |
+               |   O
+               |  /|\
+               |
+               |
+            ___|___
+            """,
+            """
+               _____ 
+               |   |
+               |   O
+               |  /|\
+               |  /
+               |
+            ___|___
+            """,
+            """
+               _____ 
+               |   |
+               |   O
+               |  /|\
+               |  / \
+               |
+            ___|___
+            """
+        };
+        
+        int erros = MAX_TENTATIVAS - tentativasRestantes;
+
+        if (erros < partesForca.length) {
+            return partesForca[erros];
+        } else {
+            return partesForca[partesForca.length - 1];
+        }
+    }
+
+    private boolean jogoFinalizado() {
+        return palavra.equals(String.valueOf(palavraEscondida));
+    }
+
+    public static void main(String[] args) {
+        JogoDaForca2 jogo = new JogoDaForca2();
+        jogo.jogar();
     }
 }
