@@ -110,12 +110,12 @@ public class JogoDaForca {
             System.out.println("Parabéns, você acertou a palavra!");
         } else {
         	System.out.println("""
-                    @@@@@@@@@@@@@@@@@@@
+        			@@@@@@@@@@@@@@@@@@@                   `
                  @@@@@@             @@@@@@@                
               @@@@                       @@@@              
              @@@                             @@            
             @@                                @@           
-           @@                     `           @@
+           @@                     `           @@          `
           @@                                   @@          
           @@ @@                             @@ @@          
           @@ @@                             @@  @          

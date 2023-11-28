@@ -75,6 +75,7 @@ public class JogoDaForca {
             exibirJogo();
         }
         if (jogoFinalizado() && tentativasRestantes > 0) {
+            System.out.println("Parabéns, você acertou a palavra!");
             System.out.println("""
         ##########################          
         ##########################          
@@ -107,44 +108,8 @@ public class JogoDaForca {
           ######################            
          ########################
             		""");
-            System.out.println("Parabéns, você acertou a palavra!");
         } else {
-        	System.out.println("""
-                    @@@@@@@@@@@@@@@@@@@
-                 @@@@@@             @@@@@@@                
-              @@@@                       @@@@              
-             @@@                             @@            
-            @@                                @@           
-           @@                     `           @@
-          @@                                   @@          
-          @@ @@                             @@ @@          
-          @@ @@                             @@  @          
-          @@ @@                             @@  @          
-          @@  @@                            @@ @@          
-          @@  @@                           @@  @@          
-           @@ @@   @@@@@@@@     @@@@@@@@   @@ @@           
-            @@@@ @@@@@@@@@@     @@@@@@@@@@ @@@@@           
-             @@@ @@@@@@@@@@     @@@@@@@@@@ @@@             
-    @@@       @@  @@@@@@@@       @@@@@@@@@  @@      @@@@   
-   @@@@@     @@   @@@@@@@   @@@   @@@@@@@   @@     @@@@@@  
-  @@   @@    @@     @@@    @@@@@    @@@     @@    @@   @@  
- @@@    @@@@  @@          @@@@@@@          @@  @@@@    @@@ 
-@@         @@@@@@@@       @@@@@@@       @@@@@@@@@        @@
-@@@@@@@@@     @@@@@@@@    @@@@@@@    @@@@@@@@      @@@@@@@@
-  @@@@ @@@@@      @@@@@              @@@ @@     @@@@@@ @@@ 
-          @@@@@@  @@@  @@           @@  @@@  @@@@@@        
-              @@@@@@ @@ @@@@@@@@@@@ @@ @@@@@@              
-                  @@ @@ @ @ @ @ @ @ @ @ @@                 
-                @@@@  @ @ @ @ @ @ @ @   @@@@@              
-            @@@@@ @@   @@@@@@@@@@@@@   @@ @@@@@            
-    @@@@@@@@@@     @@                 @@      @@@@@@@@@    
-   @@           @@@@@@@             @@@@@@@@          @@   
-    @@@     @@@@@     @@@@@@@@@@@@@@@     @@@@@     @@@    
-      @@   @@@           @@@@@@@@@           @@@   @@      
-      @@  @@                                   @@  @@      
-       @@@@                                     @@@@       
-        			""");
-            System.out.println("Que pena, você não conseguiu acertar a palavra. A palavra correta era: '" + palavra + "'.");
+            System.out.println("Que pena, você não conseguiu acertar a palavra. A palavra correta era '" + palavra + "'.");
         }
         scanner.close();
     }
