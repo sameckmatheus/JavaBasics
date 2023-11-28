@@ -20,7 +20,7 @@ public class JogoDaForca {
         palavra = PALAVRAS[indice];
         palavraEscondida = new char[palavra.length()];
         for (int i = 0; i < palavra.length(); i++) {
-            palavraEscondida[i] = '_';
+            palavraEscondida[i] = '-';
         }
         letrasTentadas = new ArrayList<>();
         tentativasRestantes = MAX_TENTATIVAS;
@@ -102,57 +102,71 @@ public class JogoDaForca {
     }
 
     private String arteForca() {
-    	String[] partesForca = {
-    	        "   _____ \n"+
-    	        "   |   |\n"+
-    	        "   |\n"+
-    	        "   |\n"+
-    	        "   |\n"+
-    	        "   |\n"+
-    	        "___|___",
-    	        "   _____ \n"+
-    	        "   |   |\n"+
-    	        "   |   O\n"+
-    	        "   |\n"+
-    	        "   |\n"+
-    	        "   |\n"+
-    	        "___|___",
-    	        "   _____ \n"+
-    	        "   |   |\n"+
-    	        "   |   O\n"+
-    	        "   |   |\n"+
-    	        "   |\n"+
-    	        "   |\n"+
-    	        "___|___",
-    	        "   _____ \n"+
-    	        "   |   |\n"+
-    	        "   |   O\n"+
-    	        "   |  /|\n"+
-    	        "   |\n"+
-    	        "   |\n"+
-    	        "___|___",
-    	        "   _____ \n"+
-    	        "   |   |\n"+
-    	        "   |   O\n"+
-    	        "   |  /|\\\n"+
-    	        "   |\n"+
-    	        "   |\n"+
-    	        "___|___",
-    	        "   _____ \n"+
-    	        "   |   |\n"+
-    	        "   |   O\n"+
-    	        "   |  /|\\\n"+
-    	        "   |  /\n"+
-    	        "   |\n"+
-    	        "___|___",
-    	        "   _____ \n"+
-    	        "   |   |\n"+
-    	        "   |   O\n"+
-    	        "   |  /|\\\n"+
-    	        "   |  / \\\n"+
-    	        "   |\n"+
-    	        "___|___"
-    	};
+        String[] partesForca = {
+            """
+               _____ 
+               |   |
+               |
+               |
+               |
+               |
+            ___|___
+            """,
+            """
+               _____ 
+               |   |
+               |   O
+               |
+               |
+               |
+            ___|___
+            """,
+            """
+               _____ 
+               |   |
+               |   O
+               |   |
+               |
+               |
+            ___|___
+            """,
+            """
+               _____ 
+               |   |
+               |   O
+               |  /|
+               |
+               |
+            ___|___
+            """,
+            """
+               _____ 
+               |   |
+               |   O
+               |  /|\
+               |
+               |
+            ___|___
+            """,
+            """
+               _____ 
+               |   |
+               |   O
+               |  /|\
+               |  /
+               |
+            ___|___
+            """,
+            """
+               _____ 
+               |   |
+               |   O
+               |  /|\
+               |  / \
+               |
+            ___|___
+            """
+        };
         
         int erros = MAX_TENTATIVAS - tentativasRestantes;
 
