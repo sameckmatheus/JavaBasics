@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename package &apos;stringExercicios&apos; to &apos;stringFundamentos&apos;&#x0D;&#x0A;- Original project: &apos;String&apos;&#x0D;&#x0A;- Original element: &apos;String/src/stringExercicios&apos;&#x0D;&#x0A;- Renamed element: &apos;String/src/stringFundamentos&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename package &apos;stringExercicios&apos;" flags="589830" hierarchical="false" id="org.eclipse.jdt.ui.rename.package" input="/src&lt;stringExercicios" name="stringFundamentos" qualified="false" references="true" stamp="1701697152658" textual="false" version="1.0"/>
+</session>

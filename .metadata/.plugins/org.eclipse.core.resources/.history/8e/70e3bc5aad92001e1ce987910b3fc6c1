@@ -1,0 +1,46 @@
+/*package exercicios;
+
+import java.util.Scanner;
+import java.util.StringTokenizer;
+
+public class exercicio2 {
+	public static void main(String[] args) {
+		Scanner scanner = new Scanner(System.in);
+		StringTokenizer exemplo = new StringTokenizer("a casa branca do gorila");
+		
+		System.out.println("Digite um número: ");
+		
+		String resp = scanner.next();
+		System.out.println(exemplo.countTokens());
+	}
+}
+
+
+ * Faça um programa que, a partir de um texto digitado pelo usuário, conte o
+ * número de palavras (palavra é definida por qualquer sequência de caracteres
+ * delimitada por espaços em branco) e exiba o resultado.
+ */
+
+package exercicios;
+
+import java.util.Scanner;
+import java.util.StringTokenizer;
+
+public class exercicio2 {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Solicita ao usuário que digite um texto
+        System.out.println("Digite um texto: ");
+        String texto = scanner.nextLine();
+
+        // Usa StringTokenizer para contar o número de palavras
+        StringTokenizer tokenizer = new StringTokenizer(texto);
+        int numeroPalavras = tokenizer.countTokens();
+
+        // Exibe o resultado
+        System.out.println("Número de palavras: " + numeroPalavras);
+        
+        scanner.close();
+    }
+}
