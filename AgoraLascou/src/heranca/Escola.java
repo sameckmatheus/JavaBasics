@@ -11,15 +11,15 @@ public class Escola {
     	Calendar dataAtual = Calendar.getInstance();
         Date dataNascimento = dataAtual.getTime();
 
-        Funcionario funcionario = new Funcionario("João Funcionário", "123.456.789-00", dataNascimento);
+        Funcionario funcionario = new Funcionario("João", "123.456.789-00", dataNascimento);
         funcionario.salario = 5000.0;
         funcionario.data_admissao = parseDate("2020-01-15");
         funcionario.cargo = "Desenvolvedor";
 
-        Aluno aluno = new Aluno("Maria Aluna", "987.654.321-00", dataNascimento);
+        Aluno aluno = new Aluno("Maria", "987.654.321-00", dataNascimento);
         aluno.matricula = "2023001";
 
-        Professor professor = new Professor("Carlos Professor", "555.111.222-33", dataNascimento);
+        Professor professor = new Professor("Carlos", "555.111.222-33", dataNascimento);
         professor.salario = 8000.0;
         professor.disciplina = "Matemática";
 
